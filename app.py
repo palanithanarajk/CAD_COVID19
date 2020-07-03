@@ -37,7 +37,7 @@ def model_predict(img_path, model):
 
     # Preprocessing the image
     x = image.img_to_array(img)
-    # x = np.true_divide(x, 255)
+    x = np.true_divide(x, 255)
     x = np.expand_dims(x, axis=0)
 
     # Be careful how your trained model deals with the input
