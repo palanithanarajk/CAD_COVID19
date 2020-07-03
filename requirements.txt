@@ -8,3 +8,4 @@ h5py
 tensorflow==1.15.2
 keras
 gunicorn
+setuptools==41.0.0
