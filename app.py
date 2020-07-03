@@ -5,7 +5,7 @@ import os
 import glob
 import re
 import numpy as np
-import keras
+
 from keras.applications.imagenet_utils import preprocess_input, decode_predictions
 from keras.models import load_model
 from keras.preprocessing import image
@@ -19,8 +19,7 @@ from gevent.pywsgi import WSGIServer
 app = Flask(__name__)
 
 # Model saved with Keras model.save()
-import tensorflow as tf
-model = tf.keras.models.load_model('models/model_covid.h5')
+model = load_model('models/model_covid.h5')
 #MODEL_PATH = 'models/chestv-Copy.h5'
 # Load your trained model
 # model._make_predict_function()          # Necessary
@@ -71,13 +70,13 @@ def upload():
         preds = model_predict(file_path, model)
 
         # Process your result for human
-        pred_class=np.argmax(preds, axis=1)
+        pred_class=np.argmax(preds, axis=-1)
         #pred_class = preds.argmax(axis=-1)            # Simple argmax
         #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
         #result = str(pred_class[0][0][1])               # Convert to string
-        if pred_class== [0]:
+        if pred_class[0]== [0]:
             result = 'Preliminary diagnosis suggests Non-Covid presentation'
-        elif pred_class== [1]:
+        elif pred_class[0]== [1]:
             result = 'Preliminary diagnosis suggests Covid presentation'
         return result
     return None
