@@ -19,7 +19,7 @@ from gevent.pywsgi import WSGIServer
 app = Flask(__name__)
 
 # Model saved with Keras model.save()
-model = load_model('models/model_covid.h5')
+model = load_model('models/my_model')
 #MODEL_PATH = 'models/chestv-Copy.h5'
 # Load your trained model
 # model._make_predict_function()          # Necessary
