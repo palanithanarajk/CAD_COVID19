@@ -24,7 +24,7 @@
 
 ### Clone the repo
 ```shell
-$ git clone https://github.com/palanithanarajk/pneumonia-diagnosis.git
+$ git clone https://github.com/palanithanarajk/CAD_COVID19.git
 ```
 
 ### Install requirements
