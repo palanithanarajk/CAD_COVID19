@@ -102,7 +102,7 @@ server {
 ```
 ## A Heroku App Deployment using this code
 Try this live AI Demo
-https://dl-cad-pneumonia.herokuapp.com/
+https://covid19-diagnosis.herokuapp.com/
 
 ## More resources
 
