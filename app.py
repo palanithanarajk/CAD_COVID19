@@ -11,7 +11,7 @@ from keras.models import load_model
 from keras.preprocessing import image
 
 # Flask utils
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template,Response, jsonify, redirect
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
@@ -29,7 +29,7 @@ print('Model loaded. Start serving...')
 # Check https://keras.io/applications/
 #from keras.applications.resnet50 import ResNet50
 #model = ResNet50(weights='imagenet')
-print('Model loaded. Check http://127.0.0.1:5002/')
+print('Model loaded. Check http://127.0.0.1:5000/')
 
 
 def model_predict(img_path, model):
@@ -37,12 +37,12 @@ def model_predict(img_path, model):
 
     # Preprocessing the image
     x = image.img_to_array(img)
-    x = np.true_divide(x, 255)
+    #x = x/255
     x = np.expand_dims(x, axis=0)
 
     # Be careful how your trained model deals with the input
     # otherwise, it won't make correct prediction!
-    x = preprocess_input(x, mode='caffe')
+    x = preprocess_input(x, mode='tf')
 
     preds = model.predict(x)
     return preds
@@ -68,25 +68,26 @@ def upload():
 
         # Make prediction
         preds = model_predict(file_path, model)
-
+        print(preds)
         # Process your result for human
         pred_class=np.argmax(preds, axis=-1)
+        print(pred_class)
         #pred_class = preds.argmax(axis=-1)            # Simple argmax
         #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
         #result = str(pred_class[0][0][1])               # Convert to string
-        if pred_class[0]== [0]:
-            result = 'Preliminary diagnosis suggests Non-Covid presentation'
-        elif pred_class[0]== [1]:
-            result = 'Preliminary diagnosis suggests Covid presentation'
+        if pred_class[0]== [1]:
+            result = ("Preliminary diagnosis suggests Non-Covid presentation with Score:"+str(preds[0][0]))
+        elif pred_class[0]== [0]:
+            result = ("Preliminary diagnosis suggests Covid presentation with Score:"+str(preds[0][1]))
         return result
-    return None
+    return result
 
 
 if __name__ == '__main__':
     # app.run(port=5002, debug=True)
    
     # Serve the app with gevent
-     http_server = WSGIServer(('', 5000), app)
+    #http_server = WSGIServer(('', 4006), app)
     #http_server = WSGIServer(('', int(os.environ.get('PORT'))), app)
-    #http_server = WSGIServer(('', int(os.environ.get('PORT'))), app)
+     http_server = WSGIServer(('', int(os.environ.get('PORT'))), app)
      http_server.serve_forever()
