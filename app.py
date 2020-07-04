@@ -86,7 +86,7 @@ if __name__ == '__main__':
     # app.run(port=5002, debug=True)
    
     # Serve the app with gevent
-    #http_server = WSGIServer(('', 5001), app)
+     http_server = WSGIServer(('', 5000), app)
     #http_server = WSGIServer(('', int(os.environ.get('PORT'))), app)
-    http_server = WSGIServer(('', int(os.environ.get('PORT'))), app)
-    http_server.serve_forever()
+    #http_server = WSGIServer(('', int(os.environ.get('PORT'))), app)
+     http_server.serve_forever()

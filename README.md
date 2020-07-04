@@ -17,7 +17,7 @@
 
 :point_down:Screenshot:
 
-![alt text](https://i.postimg.cc/6qYBQ4fh/image.png)
+![alt text](https://postimg.cc/56Z5TqR9)
 
 ------------------
 ## Local Installation
@@ -40,6 +40,7 @@ Make sure you have the following installed:
 - pillow
 - h5py
 - gevent
+- gunicorn
 
 ### Run with Python
 
@@ -53,11 +54,8 @@ $ python app.py
 
 Open http://localhost:5000 and have fun. :smiley:
 
-> Analyze
-![alt text](https://i.postimg.cc/W4FKFqT7/image.png)
-
-> Diagnosis
-![alt text](https://i.postimg.cc/4y9zktkm/image.png)
+> Analyze & Diagnosis
+![alt text](https://postimg.cc/5XL5VYhB)
 
 
 ------------------
@@ -101,7 +99,7 @@ server {
 }
 ```
 ## A Heroku App Deployment using this code
-Try this live AI Demo
+Try this live AI Demo for COVID-19 Diagnosis
 https://covid19-diagnosis.herokuapp.com/
 
 ## More resources
