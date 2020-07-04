@@ -67,7 +67,7 @@ def upload():
         f.save(file_path)
 
         # Make prediction
-        preds = model_predict(f, model)
+        preds = model_predict(file_path, model)
         print(preds)
         # Process your result for human
         pred_class=np.argmax(preds, axis=-1)
