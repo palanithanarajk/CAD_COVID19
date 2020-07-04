@@ -17,7 +17,7 @@
 
 :point_down:Screenshot:
 
-![alt text](https://postimg.cc/56Z5TqR9)
+![Startup window](https://i.postimg.cc/52tPHs5z/window1.png)
 
 ------------------
 ## Local Installation
@@ -55,7 +55,7 @@ $ python app.py
 Open http://localhost:5000 and have fun. :smiley:
 
 > Analyze & Diagnosis
-![alt text](https://postimg.cc/5XL5VYhB)
+![Analyze Window](https://i.postimg.cc/13YvDDMj/window2.png)
 
 
 ------------------
